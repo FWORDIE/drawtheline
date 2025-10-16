@@ -1,4 +1,4 @@
-FROM node:22 as build-app
+FROM node:24 as build-app
 
 ARG BUILD_TIME
 ARG BUILD_VERSION
@@ -11,13 +11,13 @@ ARG PB_PASS=${PB_PASS}
 ARG URL=${URL}
 RUN npm run build
 
-FROM node:22-alpine as build-runtime
+FROM node:24-alpine as build-runtime
 
 WORKDIR /app
 COPY package.json ./
 RUN npm install
 
-FROM node:20-alpine as final
+FROM node:24-alpine as final
 ENV NODE_ENV production
 
 WORKDIR /app
