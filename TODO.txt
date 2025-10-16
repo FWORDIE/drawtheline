@@ -1,0 +1,8 @@
+NOTES
+
+TODO
+
+[o] - Fetch Server
+[o] - Post Server
+[o] - Delete Server
+[o] - Add Sticker
