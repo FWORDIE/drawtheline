@@ -108,6 +108,8 @@
 <style lang="scss">
 	input {
 		height: 0px;
+		border: none;
+		opacity: 0;
 		@media (max-width: 600px) {
 			display: none;
 		}
