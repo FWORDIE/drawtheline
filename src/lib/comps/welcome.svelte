@@ -64,7 +64,7 @@
 	<p class="mobOnly">
 		Unfortuntly this doesn't work on phones but you can still explore other people's answers
 	</p>
-	<button class="mobBut" onclick={() => ($started = true)}>Explore The Board</button>
+	<button class="mobBut mobOnly" onclick={() => ($started = true)}>Explore The Board</button>
 </div>
 
 <style lang="scss">

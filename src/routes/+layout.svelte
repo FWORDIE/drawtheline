@@ -11,7 +11,8 @@
 </script>
 
 <svelte:head>
-	<link rel="icon" href={favicon} />
+	<!-- <link rel="icon" href={favicon} /> -->
+	<title>Draw The Line</title>
 </svelte:head>
 
 {@render children?.()}
