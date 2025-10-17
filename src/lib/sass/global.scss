@@ -39,3 +39,35 @@ body {
 		24.7px 44.4px 56.8px -2.1px hsl(var(--shadow-color) / 0.13),
 		39px 70.1px 89.6px -2.5px hsl(var(--shadow-color) / 0.13);
 }
+/* karla-regular - latin */
+@font-face {
+	font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+	font-family: 'Karla';
+	font-style: normal;
+	font-weight: 400;
+	src: url('$lib/fonts/karla-v31-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* karla-italic - latin */
+@font-face {
+	font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+	font-family: 'Karla';
+	font-style: italic;
+	font-weight: 400;
+	src: url('$lib/fonts/karla-v31-latin-italic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* karla-600 - latin */
+@font-face {
+	font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+	font-family: 'Karla';
+	font-style: normal;
+	font-weight: 600;
+	src: url('$lib/fonts/karla-v31-latin-600.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* karla-800 - latin */
+@font-face {
+	font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+	font-family: 'Karla';
+	font-style: normal;
+	font-weight: 800;
+	src: url('$lib/fonts/karla-v31-latin-800.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
