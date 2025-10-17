@@ -6,6 +6,7 @@ export type StickerType = {
 	visable: boolean;
 	rotate: number;
 	keyId: string;
+	placed: boolean;
 };
 
 export type DataType = {

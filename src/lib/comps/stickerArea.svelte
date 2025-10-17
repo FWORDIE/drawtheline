@@ -1,14 +1,12 @@
 <script lang="ts">
 	import Sticker from './sticker.svelte';
 	import PlacingSticker from './placingSticker.svelte';
-	import { stickerArray } from '$lib/store';
+	import { hideOthers, started, stickerArray } from '$lib/store';
 	import { genUniqueId } from '$lib/funcs';
-
-	let { started } = $props();
 </script>
 
 <div class="stickerArea">
-	{#if started}
+	{#if $started}
 		<PlacingSticker></PlacingSticker>
 	{/if}
 
@@ -25,15 +23,21 @@
 	<p class="text">WE SHOULDN'T TO USE AI TO</p>
 </div>
 
+<div class="background back">
+	<p class="text">WE SHOULD USE AI TO</p>
+	<div class="line"></div>
+	<p class="text">WE SHOULDN'T TO USE AI TO</p>
+</div>
+
 <style lang="scss">
 	.stickerArea {
-		width: calc(85dvw);
-		height: calc(90dvh);
+		width: calc(100dvw);
+		height: calc(100dvh);
 		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		border: lightgray 1px dotted;
+		top: 0;
+		left: 0;
+		/* opacity: 0.1; */
+		overflow: hidden;
 		/* background-color: pink; */
 		z-index: 2;
 	}
@@ -45,9 +49,17 @@
 		justify-content: space-around;
 		align-items: center;
 		position: relative;
-		mix-blend-mode: overlay;
+		mix-blend-mode: difference;
 		z-index: 99999;
 		pointer-events: none;
+		&.back {
+			position: fixed;
+			top: 0;
+			left: 0;
+			z-index: 0;
+			background-color: var(--white);
+			mix-blend-mode: none;
+		}
 		.text {
 			font-size: 5vh;
 			font-weight: bold;

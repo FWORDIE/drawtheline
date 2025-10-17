@@ -1,27 +1,31 @@
 <script lang="ts">
+	import { hideOthers } from '$lib/store';
 	import type { StickerType } from '$lib/types';
 	import { fade, scale as scaleFunc } from 'svelte/transition';
 	let {
 		id,
-		x,
-		y,
+		x = 250,
+		y = 250,
 		text,
 		visable,
 		rotate,
 		z,
+		placed,
 		scale = 1,
 		placing = false,
-		colour = false
-	}: StickerType & { z: number; scale: number; placing: boolean; colour: boolean } = $props();
+		colour = 'antiquewhite'
+	}: StickerType & { z: number; scale?: number; placing?: boolean; colour?: string } = $props();
 </script>
 
 <div
 	class="stickerWrapper"
-	style="--x:{50 - x}%; --y:{50 - y}%; --rotate:{rotate}deg; --z:{z}; --scale:{scale};
+	style="--x:{50 - x}%; --y:{50 -
+		y}%; --rotate:{rotate}deg; --z:{z}; --scale:{scale}; --colour:{placed ? 'lightblue' : colour};;
 	"
+	class:hidden={$hideOthers && !placed}
 	in:scaleFunc={{ duration: 1000, start: 1.5, opacity: 1 }}
 >
-	<div class="sticker" class:colour>
+	<div class="sticker">
 		<p class="text">
 			{text}
 		</p>
@@ -35,9 +39,12 @@
 		top: var(--y);
 		left: var(--x);
 		transform: translate(-50%, -50%) rotate(var(--rotate));
+		&.hidden {
+			display: none;
+		}
 		.sticker {
 			transform: scale(var(--scale));
-			background: #bcd6ff;
+			background: var(--colour);
 			display: flex;
 			align-items: center;
 			justify-content: center;
