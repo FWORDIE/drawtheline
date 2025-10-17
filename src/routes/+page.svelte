@@ -24,10 +24,10 @@
 			x: PBSticker.x,
 			y: PBSticker.y,
 			text: prompt.prompt,
-			visable: true,
 			rotate: randomNumber(-5, 5),
 			keyId: genUniqueId(),
-			placed: false
+			placed: false,
+			custom: false
 		};
 	});
 </script>

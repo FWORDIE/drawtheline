@@ -4,22 +4,23 @@
 	import { Spring } from 'svelte/motion';
 	import Sticker from './sticker.svelte';
 	import { delay, genUniqueId, pickRandom, randomInteger, randomNumber } from '$lib/funcs';
-	import { current, devMode, prompts, stickerArray } from '$lib/store';
+	import { current, custom, devMode, prompts, stickerArray } from '$lib/store';
 
 	let placing = $state(true);
+
+	let customText = $state('');
 
 	const createSticker = () => {
 		const sticker: StickerType = {
 			id: $prompts[$current].id,
-			x: 100,
-			y: 100,
+			x: 0,
+			y: 0,
 			text: $prompts[$current].prompt,
-			visable: true,
 			rotate: randomNumber(-5, 5),
 			keyId: genUniqueId(),
-			placed: true
+			placed: true,
+			custom: false
 		};
-		$current++;
 
 		return sticker;
 	};
@@ -39,10 +40,26 @@
 	$effect(() => {
 		thisSticker.x = -coords.current.x + 50;
 		thisSticker.y = -coords.current.y + 50;
+		if ($custom) {
+			if (!thisSticker.custom) {
+				console.log('Making new Custom');
+				thisSticker.id = genUniqueId();
+				thisSticker.custom = true;
+			}
+			textBox.focus();
+			thisSticker.text = customText ? customText : 'Type and Then Place';
+		} else {
+			if (thisSticker.custom) {
+				thisSticker = createSticker();
+			}
+		}
 	});
 
 	const placeSticker = async () => {
-		// console.log(thisSticker.text);
+		if ($custom && !customText) {
+			return;
+		}
+
 		$stickerArray = [...$stickerArray, thisSticker];
 		if (!$devMode) {
 			const response = await fetch('/api', {
@@ -53,6 +70,12 @@
 				}
 			});
 		}
+		customText = '';
+
+		if (!$custom) {
+			$current++;
+		}
+
 		// console.log(thisSticker);
 		if ($current > $prompts.length - 1) {
 			alert('Out of Prompts, email me with more? (fred@mildlyupset.com)');
@@ -64,8 +87,11 @@
 		await delay(1000);
 		placing = true;
 	};
+
+	let textBox: HTMLInputElement;
 </script>
 
+<input bind:value={customText} bind:this={textBox} maxlength="68" />
 <svelte:window
 	bind:innerWidth={viewport.w}
 	bind:innerHeight={viewport.h}
@@ -80,12 +106,25 @@
 {/if}
 
 <style lang="scss">
+	input {
+		height: 0px;
+		@media (max-width: 600px) {
+			display: none;
+		}
+	}
 	button {
 		position: fixed;
 		width: 100%;
 		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 		background-color: transparent;
 		border: none;
 		z-index: 99999;
+		top: 0;
+		@media (max-width: 600px) {
+			display: none;
+		}
 	}
 </style>

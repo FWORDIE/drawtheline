@@ -10,9 +10,7 @@
 		<PlacingSticker></PlacingSticker>
 	{/if}
 
-	{#each $stickerArray.filter((sticker) => {
-		return sticker.visable;
-	}) as sticker, i (sticker.keyId)}
+	{#each $stickerArray as sticker, i (sticker.keyId)}
 		<Sticker {...sticker} z={10 + i} placing={false} scale={1}></Sticker>
 	{/each}
 </div>

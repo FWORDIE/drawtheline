@@ -7,7 +7,6 @@
 		x = 250,
 		y = 250,
 		text,
-		visable,
 		rotate,
 		z,
 		placed,
@@ -61,12 +60,12 @@
 			box-shadow: var(--shadow-elevation-low);
 			cursor: pointer;
 
-			&.colour {
-				background: palegreen;
-			}
 			.text {
 				font-size: clamp(8px, 1vw, 14px);
 				text-align: center;
+				@media (max-width: 600px) {
+					font-size: clamp(12px, 1vw, 14px);
+				}
 			}
 		}
 	}

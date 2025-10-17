@@ -17,7 +17,8 @@ export const load: PageServerLoad = async ({ params }) => {
 			filter: 'approved = true'
 		}),
 		stickers: await pb.collection('stickers').getFullList({
-			sort: '-created'
+			sort: '-created',
+			filter: 'prompt.approved = true'
 		})
 	};
 };

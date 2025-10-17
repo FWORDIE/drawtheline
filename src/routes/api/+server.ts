@@ -8,11 +8,26 @@ const authData = await pb.collection('users').authWithPassword(PB_USER, PB_PASS)
 
 export const POST = async (event) => {
 	const body = await event.request.json();
+
 	const sticker = body.thisSticker;
-	const response = await pb.collection('stickers').create({
-		prompt: sticker.id,
-		x: sticker.x,
-		y: sticker.y
-	});
-	return json({ response }, { status: 201 });
+	if (sticker.custom) {
+		const promptResponse = await pb.collection('prompts').create({
+			prompt: sticker.text,
+			approved: false
+		});
+
+		const stickerResponse = await pb.collection('stickers').create({
+			prompt: promptResponse.id,
+			x: sticker.x,
+			y: sticker.y
+		});
+		return json({ stickerResponse }, { status: 201 });
+	} else {
+		const stickerResponse = await pb.collection('stickers').create({
+			prompt: sticker.id,
+			x: sticker.x,
+			y: sticker.y
+		});
+		return json({ stickerResponse }, { status: 201 });
+	}
 };

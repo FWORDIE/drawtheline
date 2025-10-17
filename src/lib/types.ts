@@ -3,10 +3,10 @@ export type StickerType = {
 	x: number;
 	y: number;
 	text: string;
-	visable: boolean;
 	rotate: number;
 	keyId: string;
 	placed: boolean;
+	custom: boolean;
 };
 
 export type DataType = {

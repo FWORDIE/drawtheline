@@ -10,10 +10,10 @@
 			x: 100,
 			y: 100,
 			text: 'Click to Start',
-			visable: true,
 			rotate: randomNumber(-3, 3),
 			keyId: genUniqueId(),
-			placed: false
+			placed: false,
+			custom: false
 		};
 
 		return sticker;
@@ -43,7 +43,7 @@
 		coords.set({ x: (e.clientX / viewport.w) * 100, y: (e.clientY / viewport.h) * 100 });
 	}}
 />
-<button onclick={() => ($started = true)}>
+<button onclick={() => ($started = true)} class="clicker">
 	<Sticker {...thisSticker} z={999999} scale={1.6} placing={true} colour="lightgreen"></Sticker>
 </button>
 
@@ -61,11 +61,44 @@
 		draw this line yourself by proposing a series of statements that you must choose if Ai should or
 		shouldn't be responsible for doing.
 	</p>
+	<p class="mobOnly">
+		Unfortuntly this doesn't work on phones but you can still explore other people's answers
+	</p>
+	<button class="mobBut" onclick={() => ($started = true)}>Explore The Board</button>
 </div>
 
 <style lang="scss">
-	button {
+	button.clicker {
 		z-index: 9999999;
+		@media (max-width: 600px) {
+			display: none;
+		}
+	}
+	.mobBut {
+		background: lightgreen;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: auto;
+		height: auto;
+		border: solid 1.5px black;
+		white-space: pre;
+		padding: 1vw 1.5vw;
+		--shadow-color: 0deg 0% 0%;
+		--shadow-elevation-low:
+			0.3px 0.6px 0.7px hsl(var(--shadow-color) / 0.12),
+			0.6px 1.1px 1.4px -1.3px hsl(var(--shadow-color) / 0.12),
+			1.5px 2.6px 3.4px -2.5px hsl(var(--shadow-color) / 0.12);
+		box-shadow: var(--shadow-elevation-low);
+		cursor: pointer;
+
+		.text {
+			font-size: clamp(8px, 1vw, 14px);
+			text-align: center;
+			@media (max-width: 600px) {
+				font-size: clamp(12px, 1vw, 14px);
+			}
+		}
 	}
 	.welcome {
 		width: calc(50dvw);
@@ -79,11 +112,32 @@
 		z-index: 99999;
 		border: solid 2px black;
 		pointer-events: none;
+		padding: calc(2 * var(--padding));
 
+		@media (max-width: 600px) {
+			width: calc(80dvw);
+			max-width: 800px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+			z-index: 9999999;
+			pointer-events: unset;
+		}
 		p {
-			margin: calc(2 * var(--padding));
+			margin-block: var(--padding);
 			text-align: center;
 			font-size: clamp(12px, 1.6vw, 22px);
+			@media (max-width: 600px) {
+				font-size: clamp(16px, 1.6vw, 26px);
+			}
+		}
+		.mobOnly {
+			display: none;
+			@media (max-width: 600px) {
+				font-weight: bold;
+				display: block;
+			}
 		}
 	}
 </style>
