@@ -34,3 +34,5 @@ export type PromptType = {
 	created: string;
 	updated: string;
 };
+
+export type ViewType = 'all' | 'latest' | 'none';

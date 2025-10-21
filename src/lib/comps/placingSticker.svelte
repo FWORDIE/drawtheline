@@ -4,7 +4,7 @@
 	import { Spring } from 'svelte/motion';
 	import Sticker from './sticker.svelte';
 	import { delay, genUniqueId, pickRandom, randomInteger, randomNumber } from '$lib/funcs';
-	import { current, custom, devMode, prompts, stickerArray } from '$lib/store';
+	import { current, custom, devMode, lastPromptID, prompts, stickerArray } from '$lib/store';
 
 	let placing = $state(true);
 
@@ -75,6 +75,8 @@
 		if (!$custom) {
 			$current++;
 		}
+
+		$lastPromptID = thisSticker.id;
 
 		// console.log(thisSticker);
 		if ($current > $prompts.length - 1) {

@@ -3,7 +3,7 @@
 	import Sticker from '$lib/comps/sticker.svelte';
 	import type { StickerType } from '$lib/types';
 	import { genUniqueId, randomNumber } from '$lib/funcs';
-	import { started, about } from '$lib/store';
+	import { started, about, viewOptions } from '$lib/store';
 	const createSticker = () => {
 		const sticker: StickerType = {
 			id: genUniqueId(),
@@ -43,7 +43,7 @@
 		coords.set({ x: (e.clientX / viewport.w) * 100, y: (e.clientY / viewport.h) * 100 });
 	}}
 />
-<button onclick={() => ($started = true)} class="clicker">
+<button onclick={() => (($started = true), ($viewOptions = 'latest'))} class="clicker">
 	<Sticker {...thisSticker} z={999999} scale={1.6} placing={true} colour="lightgreen"></Sticker>
 </button>
 

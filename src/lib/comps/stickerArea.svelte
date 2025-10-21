@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Sticker from './sticker.svelte';
 	import PlacingSticker from './placingSticker.svelte';
-	import { about, hideOthers, started, stickerArray } from '$lib/store';
+	import { about, started, stickerArray } from '$lib/store';
 	import { genUniqueId } from '$lib/funcs';
 </script>
 

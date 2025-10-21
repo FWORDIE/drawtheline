@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { hideOthers } from '$lib/store';
+	import { lastPromptID, viewOptions } from '$lib/store';
 	import type { StickerType } from '$lib/types';
 	import { fade, scale as scaleFunc } from 'svelte/transition';
 	let {
@@ -21,11 +21,12 @@
 	style="--x:{50 - x}%; --y:{50 -
 		y}%; --rotate:{rotate}deg; --z:{z}; --scale:{scale}; --colour:{placed ? 'lightblue' : colour};;
 	"
-	class:hidden={$hideOthers && !placed && !placing}
+	class:top={$viewOptions == 'latest' && $lastPromptID == id}
 	in:scaleFunc={{ duration: 1000, start: 1.5, opacity: 1 }}
+	class:placed
 >
 	<div class="sticker">
-		{#if !$hideOthers || placed || placing}
+		{#if placed || placing || $viewOptions == 'all' || ($viewOptions == 'latest' && $lastPromptID == id)}
 			<p class="text">
 				{text}
 			</p>
@@ -40,7 +41,7 @@
 		top: var(--y);
 		left: var(--x);
 		transform: translate(-50%, -50%) rotate(var(--rotate));
-		&.hidden {
+		/* &.hidden {
 			height: 10px;
 			width: 10px;
 			overflow: hidden;
@@ -48,6 +49,17 @@
 				height: 10px;
 				width: 10px;
 				padding: 0;
+			}
+		} */
+		&.top {
+			z-index: 9999;
+			.sticker {
+				background-color: lightpink;
+			}
+		}
+		&.placed {
+			.sticker {
+				background-color: var(--colour);
 			}
 		}
 		.sticker {

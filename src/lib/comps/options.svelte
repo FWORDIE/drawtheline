@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { about, custom, hideOthers, started } from '$lib/store';
+	import { about, custom, lastPromptID, started, viewOptions } from '$lib/store';
 
 	const on_key_down = (event: KeyboardEvent) => {
 		console.log('typing');
@@ -7,7 +7,16 @@
 
 		switch (event.key) {
 			case '1':
-				$hideOthers = !$hideOthers;
+				if ($viewOptions == 'latest') {
+					$viewOptions = 'all';
+					viewTypeText = `Hide Other's Answers`;
+				} else if ($viewOptions == 'all') {
+					$viewOptions = 'none';
+					viewTypeText = `Show Last Answer`;
+				} else {
+					$viewOptions = 'latest';
+					viewTypeText = `Show All Answers`;
+				}
 				event.preventDefault();
 				break;
 			case '2':
@@ -38,16 +47,29 @@
 				break;
 		}
 	};
+
+	$effect(() => {
+		if ($viewOptions == 'all') {
+			viewTypeText = `Hide Other's Answers`;
+		} else if ($viewOptions == 'none') {
+			viewTypeText = `Show Last Answer`;
+		} else if ($viewOptions == 'latest') {
+			viewTypeText = `Show All Answers`;
+		}
+	});
+
+	let viewTypeText = $state(`Hide Other's Answers`);
 </script>
 
 <svelte:window on:keydown={on_key_down} />
 <div class="optionsMenu">
 	<p>Hot Keys:</p>
-	<p>{$hideOthers ? 'Show' : 'Hide'} Other's Answers [1]</p>
+	<p>{viewTypeText} [1]</p>
 	<p>{!$custom ? 'Write Your Own' : 'Place Defaults'} [2]</p>
 	<p>{$started ? 'Show' : 'Hide'} Help [3]</p>
 	<p>{$about ? 'Hide' : 'Show'} About [4]</p>
 	<p>Contact Fred Wordie [5]</p>
+	{$lastPromptID}
 </div>
 
 <style lang="scss">
