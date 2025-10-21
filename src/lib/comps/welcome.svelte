@@ -49,7 +49,7 @@
 
 <div class="welcome">
 	<p>
-		<strong>This is an collective exercise in deciding what we/you believe AI should do...</strong>
+		<strong>This is a collective exercise in deciding what we/you believe AI should do...</strong>
 	</p>
 	<p>Click to place each prompt above or below the line</p>
 	<p>Explore other peoples decisions [1]</p>
