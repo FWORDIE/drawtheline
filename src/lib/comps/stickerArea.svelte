@@ -47,7 +47,7 @@
 		justify-content: space-around;
 		align-items: center;
 		position: relative;
-		mix-blend-mode: difference;
+		mix-blend-mode: color-burn;
 		z-index: 99999;
 		pointer-events: none;
 		&.back {
