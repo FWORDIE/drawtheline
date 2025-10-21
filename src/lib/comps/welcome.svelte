@@ -52,8 +52,8 @@
 		<strong>This is a collective exercise in deciding what we/you believe AI should do...</strong>
 	</p>
 	<p>Click to place each prompt above or below the line</p>
-	<p>Explore other peoples decisions [1]</p>
-	<p>Or write your own prompts [2]</p>
+	<p>Then see other peoples decisions [in pink]</p>
+	<p>Or write your own prompts</p>
 	<p class="mobOnly">
 		Unfortuntly this doesn't work on phones but you can still explore other people's answers
 	</p>
