@@ -69,7 +69,6 @@
 	<p>{$started ? 'Show' : 'Hide'} Help [3]</p>
 	<p>{$about ? 'Hide' : 'Show'} About [4]</p>
 	<p>Contact Fred Wordie [5]</p>
-	{$lastPromptID}
 </div>
 
 <style lang="scss">
