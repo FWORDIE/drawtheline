@@ -7,7 +7,7 @@ export const prompts: Writable<PromptType[]> = writable([]);
 
 export const current: Writable<number> = writable(0);
 
-export const devMode: Writable<boolean> = writable(true);
+export const devMode: Writable<boolean> = writable(false);
 
 export const viewOptions: Writable<ViewType> = writable('all');
 export const started: Writable<boolean> = writable(false);
