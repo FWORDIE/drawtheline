@@ -3,11 +3,12 @@
 	import type { DataType, PromptType, StickerType } from '$lib/types';
 
 	let { data }: DataType = $props();
-	import { prompts, stickerArray, started } from '$lib/store';
+	import { prompts, stickerArray, started, about } from '$lib/store';
 	import { genUniqueId, randomNumber } from '$lib/funcs';
 
 	import Welcome from '$lib/comps/welcome.svelte';
 	import Options from '$lib/comps/options.svelte';
+	import About from '$lib/comps/about.svelte';
 
 	$prompts = data.prompts
 		.map((value) => ({ value, sort: Math.random() }))
@@ -33,7 +34,9 @@
 </script>
 
 <StickerArea></StickerArea>
-
+{#if $about}
+	<About></About>
+{/if}
 {#if !$started}
 	<Welcome></Welcome>
 {/if}

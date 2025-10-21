@@ -21,13 +21,15 @@
 	style="--x:{50 - x}%; --y:{50 -
 		y}%; --rotate:{rotate}deg; --z:{z}; --scale:{scale}; --colour:{placed ? 'lightblue' : colour};;
 	"
-	class:hidden={$hideOthers && !placed}
+	class:hidden={$hideOthers && !placed && !placing}
 	in:scaleFunc={{ duration: 1000, start: 1.5, opacity: 1 }}
 >
 	<div class="sticker">
-		<p class="text">
-			{text}
-		</p>
+		{#if !$hideOthers || placed || placing}
+			<p class="text">
+				{text}
+			</p>
+		{/if}
 	</div>
 </div>
 
@@ -39,7 +41,14 @@
 		left: var(--x);
 		transform: translate(-50%, -50%) rotate(var(--rotate));
 		&.hidden {
-			display: none;
+			height: 10px;
+			width: 10px;
+			overflow: hidden;
+			.sticker {
+				height: 10px;
+				width: 10px;
+				padding: 0;
+			}
 		}
 		.sticker {
 			transform: scale(var(--scale));

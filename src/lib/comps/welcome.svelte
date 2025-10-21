@@ -3,7 +3,7 @@
 	import Sticker from '$lib/comps/sticker.svelte';
 	import type { StickerType } from '$lib/types';
 	import { genUniqueId, randomNumber } from '$lib/funcs';
-	import { started } from '$lib/store';
+	import { started, about } from '$lib/store';
 	const createSticker = () => {
 		const sticker: StickerType = {
 			id: genUniqueId(),
@@ -49,27 +49,30 @@
 
 <div class="welcome">
 	<p>
-		In his 1976 seminal book, Computer Power and Human Reason, Joseph Weizenbaum postulates that the
-		relevant issues around computing 'are neither technological nor even mathematical; they are
-		ethical.' He goes on to say, 'They cannot be settled by asking questions beginning with "can."
-		The limits of the applicability of computers are ultimately statable only in terms of oughts.'
+		<strong>This is an collective exercise in deciding what we/you believe AI should do...</strong>
 	</p>
-	<p>
-		In 2025 where we are told by Silicon Valley, Journalists and Politicians that AI can, should and
-		will do everything, it is more relevant than ever to head Weizenbaum's advice. As much as we are
-		able, we should choose where to limit AI's integration into our lives. This website asks you to
-		draw this line yourself by proposing a series of statements that you must choose if Ai should or
-		shouldn't be responsible for doing.
-	</p>
+	<p>Click to place each prompt above or below the line</p>
+	<p>Explore other peoples decisions [1]</p>
+	<p>Or write your own prompts [2]</p>
 	<p class="mobOnly">
 		Unfortuntly this doesn't work on phones but you can still explore other people's answers
 	</p>
+	<button class="mobBut mobOnly" onclick={() => (($started = true), ($about = true))}>About</button>
 	<button class="mobBut mobOnly" onclick={() => ($started = true)}>Explore The Board</button>
 </div>
 
 <style lang="scss">
 	button.clicker {
-		z-index: 9999999;
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: transparent;
+		border: none;
+		z-index: 999999999;
+		top: 0;
 		@media (max-width: 600px) {
 			display: none;
 		}
@@ -84,6 +87,7 @@
 		border: solid 1.5px black;
 		white-space: pre;
 		padding: 1vw 1.5vw;
+		margin: 1vw;
 		--shadow-color: 0deg 0% 0%;
 		--shadow-elevation-low:
 			0.3px 0.6px 0.7px hsl(var(--shadow-color) / 0.12),
@@ -91,14 +95,6 @@
 			1.5px 2.6px 3.4px -2.5px hsl(var(--shadow-color) / 0.12);
 		box-shadow: var(--shadow-elevation-low);
 		cursor: pointer;
-
-		.text {
-			font-size: clamp(8px, 1vw, 14px);
-			text-align: center;
-			@media (max-width: 600px) {
-				font-size: clamp(12px, 1vw, 14px);
-			}
-		}
 	}
 	.welcome {
 		width: calc(50dvw);
@@ -127,9 +123,13 @@
 		p {
 			margin-block: var(--padding);
 			text-align: center;
+
 			font-size: clamp(12px, 1.6vw, 22px);
 			@media (max-width: 600px) {
 				font-size: clamp(16px, 1.6vw, 26px);
+			}
+			strong {
+				font-size: inherit;
 			}
 		}
 		.mobOnly {

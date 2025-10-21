@@ -1,12 +1,12 @@
 <script lang="ts">
 	import Sticker from './sticker.svelte';
 	import PlacingSticker from './placingSticker.svelte';
-	import { hideOthers, started, stickerArray } from '$lib/store';
+	import { about, hideOthers, started, stickerArray } from '$lib/store';
 	import { genUniqueId } from '$lib/funcs';
 </script>
 
 <div class="stickerArea">
-	{#if $started}
+	{#if $started && !$about}
 		<PlacingSticker></PlacingSticker>
 	{/if}
 

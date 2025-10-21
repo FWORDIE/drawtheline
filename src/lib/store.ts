@@ -12,3 +12,4 @@ export const devMode: Writable<boolean> = writable(false);
 export const hideOthers: Writable<boolean> = writable(false);
 export const started: Writable<boolean> = writable(false);
 export const custom: Writable<boolean> = writable(false);
+export const about: Writable<boolean> = writable(false);
