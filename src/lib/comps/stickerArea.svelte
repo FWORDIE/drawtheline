@@ -17,7 +17,6 @@
 
 <div class="background">
 	<p class="text">WE SHOULD USE AI TO</p>
-	<div class="line"></div>
 	<p class="text">WE SHOULDN'T USE AI TO</p>
 </div>
 
