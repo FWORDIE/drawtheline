@@ -62,6 +62,9 @@
 		shouldn't be responsible for doing.
 	</p>
 	<p>
+		Raw data available at <a href="/api/data" target="_blank">/api/data</a>
+	</p>
+	<p>
 		Made by <a href="www.fredwordie.com" target="_blank">Fred Wordie</a>
 	</p>
 
