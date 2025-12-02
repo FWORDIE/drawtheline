@@ -17,6 +17,7 @@
 
 <div class="background">
 	<p class="text">WE SHOULD USE AI TO</p>
+	<div class="line"></div>
 	<p class="text">WE SHOULDN'T USE AI TO</p>
 </div>
 
@@ -46,7 +47,7 @@
 		justify-content: space-around;
 		align-items: center;
 		position: relative;
-		mix-blend-mode: color-burn;
+		mix-blend-mode: hard-light;
 		z-index: 99999;
 		pointer-events: none;
 		&.back {
@@ -61,6 +62,7 @@
 			font-size: 5vh;
 			font-weight: bold;
 			text-align: center;
+			color: darkolivegreen;
 		}
 		.line {
 			position: fixed;
@@ -68,7 +70,7 @@
 			width: calc(100dvw - 2 * var(--padding));
 			top: 50%;
 			left: 50%;
-			background-color: black;
+			background-color: darkolivegreen;
 			transform: translate(-50%, 50%);
 			z-index: 1;
 		}

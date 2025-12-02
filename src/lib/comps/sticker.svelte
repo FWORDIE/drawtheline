@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { lastPromptID, viewOptions } from '$lib/store';
+	import { lastPromptID, stickerArray, viewOptions } from '$lib/store';
 	import type { StickerType } from '$lib/types';
 	import { fade, scale as scaleFunc } from 'svelte/transition';
 	let {
@@ -27,9 +27,11 @@
 >
 	<div class="sticker">
 		{#if placed || placing || $viewOptions == 'all' || ($viewOptions == 'latest' && $lastPromptID == id)}
-			<p class="text">
-				{text}
-			</p>
+			{#if z > $stickerArray.length - 200 || ($viewOptions == 'latest' && $lastPromptID == id)}
+				<p class="text">
+					{text}
+				</p>
+			{/if}
 		{/if}
 	</div>
 </div>
